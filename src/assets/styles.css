@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+@media screen and (min-width: 480px) {
+  body {
+    background: #dbdbdb;
+    white-space: nowrap; }
+
+  * {
+    user-select: none;
+    cursor: default;
+    font-family: 'Roboto Mono';
+    font-weight: bold; }
+
+  .main-container {
+    position: relative;
+    display: none;
+    width: fit-content;
+    margin: 10% auto 0 auto; }
+
+  .relativeBlock, .flipBoard-container, .flipBoard-letter-top, .flipBoard-letter-bottom, .flipBoard-letter-top-back, .button {
+    position: relative;
+    display: block; }
+
+  .absoluteBlock, .flipBoard-frame, .top-back-frame {
+    position: absolute;
+    display: block; }
+
+  .flipBoard-container {
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(180deg, #030504, #212121 50%, #4a4a4a 50%, #626262);
+    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    z-index: 1; }
+
+  .flipBoard-frame {
+    width: 100%;
+    height: 150px;
+    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 280px;
+    overflow: hidden;
+    color: white; }
+
+  .top-frame {
+    transform-origin: 0px 150px;
+    background: linear-gradient(180deg, #030504, #212121);
+    transform: rotateX(0deg); }
+
+  .bottom-frame {
+    top: 150px;
+    background: linear-gradient(180deg, #4a4a4a, #626262); }
+
+  .flipBoard-letter-top {
+    margin-top: -50px;
+    backface-visibility: hidden; }
+
+  .flipBoard-letter-bottom {
+    margin-top: -195px; }
+
+  .top-back-frame {
+    width: 100%;
+    height: 150px;
+    background: transparent;
+    transform-origin: 0px 150px;
+    transform: rotateX(180deg);
+    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    box-sizing: border-box;
+    text-align: center;
+    color: transparent;
+    font-size: 280px;
+    overflow: hidden; }
+
+  .top-animate {
+    animation: flip 80ms normal linear;
+    animation-fill-mode: none;
+    animation-iteration-count: 1; }
+
+  .top-back-animate {
+    animation: flipBackSide 80ms normal linear;
+    animation-fill-mode: none;
+    animation-iteration-count: 1; }
+
+  .flipBoard-letter-top-back {
+    margin-top: -20px;
+    transform: rotateX(180deg); }
+
+  @keyframes flip {
+    0% {
+      transform: rotateX(0deg);
+      background: linear-gradient(180deg, #030504, #212121);
+      color: white; }
+    50% {
+      color: white; }
+    51% {
+      color: transparent; }
+    100% {
+      background: linear-gradient(180deg, #4a4a4a, #626262);
+      transform: rotateX(-180deg);
+      color: transparent; } }
+  @keyframes flipBackSide {
+    0% {
+      transform: rotateX(0deg);
+      color: transparent;
+      background: transparent; }
+    50% {
+      color: transparent;
+      background: transparent; }
+    51% {
+      color: white;
+      background: linear-gradient(0deg, #4a4a4a, #626262); }
+    100% {
+      background: linear-gradient(0deg, #4a4a4a, #626262);
+      transform: rotateX(-180deg);
+      color: white; } }
+  .button {
+    width: 100px;
+    height: 50px;
+    margin: auto;
+    background: dodgerblue;
+    color: white;
+    font-size: 17px;
+    top: 50px; }
+
+  /*
+    #by-line-container{
+      color: #9f9e9f;
+      font-weight: 400;
+      width:fit-content;
+      display:block;
+      margin:auto;
+      transition: all 1000ms ease-in-out;
+    }
+  
+    #menu-container{
+      position:relative;
+    }
+  
+    ul {
+      position:relative;
+      width:100%;
+      right:70px;
+      transition: all 1000ms ease-in-out;
+    }
+  
+    li {
+      opacity: 0;
+      display:hidden;
+      margin-top:10px;
+      font-size:25px;
+      width:92%;
+      border-radius:2px;
+      padding: 10px;
+      transition: opacity 1000ms ease-in-out, font-size 1000ms ease-in-out, background 200ms ease-in-out;
+    }
+  
+    li:hover{
+      color: white;
+      background:#c3c3c3;
+    }*/ }
+#test {
+  animation: testAnimation 1s linear; }
+
+@keyframes testAnimation {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(110%); } }
+
+/*# sourceMappingURL=styles.css.map */
