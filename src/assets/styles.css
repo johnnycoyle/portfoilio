@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,700");
 @media screen and (min-width: 480px) {
   body {
     background: #dbdbdb;
@@ -8,15 +8,17 @@
     user-select: none;
     cursor: default;
     font-family: 'Roboto Mono';
-    font-weight: bold; }
+    font-weight: 700; }
 
   .main-container {
     position: relative;
-    display: none;
-    width: fit-content;
+    display: block;
+    width: 500px;
+    overflow: wrap;
+    white-space: normal;
     margin: 10% auto 0 auto; }
 
-  .relativeBlock, .flipBoard-container, .flipBoard-letter-top, .flipBoard-letter-bottom, .flipBoard-letter-top-back, .button {
+  .relativeBlock, .flipBoard-letter-top, .flipBoard-letter-bottom, .flipBoard-letter-top-back, .button {
     position: relative;
     display: block; }
 
@@ -25,65 +27,67 @@
     display: block; }
 
   .flipBoard-container {
-    width: 200px;
-    height: 300px;
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 50px;
     background: linear-gradient(180deg, #030504, #212121 50%, #4a4a4a 50%, #626262);
-    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    border: 1px rgba(0, 0, 0, 0.2) ridge;
     transform-style: preserve-3d;
-    perspective: 500px;
+    perspective: 400px;
     z-index: 1; }
 
   .flipBoard-frame {
     width: 100%;
-    height: 150px;
-    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    height: 25px;
+    border: 1px rgba(0, 0, 0, 0.2) ridge;
     box-sizing: border-box;
     text-align: center;
-    font-size: 280px;
+    font-size: 35px;
     overflow: hidden;
     color: white; }
 
   .top-frame {
-    transform-origin: 0px 150px;
+    transform-origin: 0px 25px;
     background: linear-gradient(180deg, #030504, #212121);
     transform: rotateX(0deg); }
 
   .bottom-frame {
-    top: 150px;
+    top: 25px;
     background: linear-gradient(180deg, #4a4a4a, #626262); }
 
   .flipBoard-letter-top {
-    margin-top: -50px;
+    margin-top: -25;
     backface-visibility: hidden; }
 
   .flipBoard-letter-bottom {
-    margin-top: -195px; }
+    margin-top: -25px; }
 
   .top-back-frame {
     width: 100%;
-    height: 150px;
+    height: 25px;
     background: transparent;
-    transform-origin: 0px 150px;
+    transform-origin: 0px 25px;
     transform: rotateX(180deg);
-    border: 3px rgba(0, 0, 0, 0.2) ridge;
+    border: 1px rgba(0, 0, 0, 0.2) ridge;
     box-sizing: border-box;
     text-align: center;
     color: transparent;
-    font-size: 280px;
+    font-size: 35px;
     overflow: hidden; }
 
   .top-animate {
-    animation: flip 80ms normal linear;
+    animation: flip 100ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .top-back-animate {
-    animation: flipBackSide 80ms normal linear;
+    animation: flipBackSide 100ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .flipBoard-letter-top-back {
-    margin-top: -20px;
+    margin-top: 208.25px;
     transform: rotateX(180deg); }
 
   @keyframes flip {

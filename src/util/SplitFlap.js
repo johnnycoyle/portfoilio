@@ -1,94 +1,138 @@
+const dictionary = createDictionary();
+const flipflap = {};
 
-import { dictionary, alphabet } from './Dictionary';
-
-const frameObj = {};
-const clickSound = new Audio('./assets/click.mp3');
-let letterSpanTop, leterSpanBottom, letterSpanTopUnder, letterSpanTop_back;
-
-function getAlphabetLetters(start, end){
+function getAlphabetLetters(start, end) {
+  let arr;
   let index = dictionary[start];
-  let arr = [start];
+  arr = [start];
 
-  while(alphabet[index + 1] !== end) {
-    arr.push(alphabet[index+1]);
-    index++;
+  if (start == end) return [];
+
+  // while(alphabet[index + 1] !== end) {
+  //   arr.push(alphabet[index+1]);
+  //   index++;
+  // }
+
+  let count = Math.floor(Math.random() * 3) + 2;
+  for (let i = 0; i < count; i++) {
+    arr.push(alphabet[Math.floor(Math.random()*alphabet.length)]);
   }
-  
   arr.push(end);
   return arr;
 }
 
-export function createFlipBoardFrame(start, end, counter=0) {
-  $('<div class="flipBoard-container"/>').appendTo('.main-container');
+function SplitFlap(inputMessages, counter) {
+
+  $(`<div class="flipBoard-container" id="split-flap-${counter}"/>`).appendTo('.main-container');
+
+  this.id = counter;
+  this.animation = false;
+  this.messages = inputMessages.reverse();
+  this.clickSound = new Audio('./assets/click.mp3');
+  this.letters = getAlphabetLetters(this.messages.pop(), this.messages[this.messages.length - 1]);
+  this.letters.reverse();
+  this.currentLetter = this.letters.pop();
+  this.newLetter = this.letters[this.letters.length - 1];
+    if (this.letters.length > 3) {
+      this.letters.pop();
+      this.letters.pop();
+    }
+
+  /////////  create divs and append to parent container  //////////
 
   let thisFrame = [];
-  let letters = getAlphabetLetters(start,end);
 
-  let frameObj = {};
+  thisFrame.push($(`<div class="flipBoard-frame top-frame-under" id=${"topFrameUnder"+this.id}/>`));
+  thisFrame.push($(`<div class="flipBoard-frame top-frame" id=${"topFrame"+this.id}/>`));
+  thisFrame.push($(`<div class="flipBoard-frame bottom-frame" id=${"bottomFrame"+this.id}/>`));
+  thisFrame.push($(`<div class=".flipBoard-frame top-back-frame" id=${"topBackFrame"+this.id}/>`));
 
-  thisFrame.push($(`<div class="flipBoard-frame top-frame-under" id=${"topFrameUnder"+counter}/>`));
-  thisFrame.push($(`<div class="flipBoard-frame top-frame" id=${"topFrame"+counter}/>`));
-  thisFrame.push($(`<div class="flipBoard-frame bottom-frame" id=${"bottomFrame"+counter}/>`));
-  thisFrame.push($(`<div class=".flipBoard-frame top-back-frame" id=${"topBackFrame"+counter}/>`));
+  this.topFrame = thisFrame[1];
+  this.topBackFrame = thisFrame[3];
 
   thisFrame.forEach(frame => {
-    frame.appendTo('.flipBoard-container');
+    frame.appendTo(`#split-flap-${counter}`);
   });
 
-  letters.reverse();
-  let letter = letters.pop();
-  let newLetter = letters[letters.length - 1];
+  /////////  create spans and append to divs  //////////
 
-  letterSpanTopUnder = $(`<span class="flipBoard-letter-top" id=${"letterSpanTopUnder"+counter}>`).text(newLetter);
-  letterSpanTopUnder.appendTo(`#${"topFrameUnder"+counter}`);
+  this.letterSpanTopUnder = $(`<span class="flipBoard-letter-top" id=${"letterSpanTopUnder"+this.id}>`).text(this.newLetter);
+  this.letterSpanTopUnder.appendTo(`#${"topFrameUnder"+this.id}`);
 
-  letterSpanTop = $(`<span class="flipBoard-letter-top" id=${"letterSpanTop"+counter}>`).text(letter)
-  letterSpanTop.appendTo(`#${"topFrame"+counter}`);
+  this.letterSpanTop = $(`<span class="flipBoard-letter-top" id=${"letterSpanTop"+this.id}>`).text(this.currentLetter)
+  this.letterSpanTop.appendTo(`#${"topFrame"+this.id}`);
 
-  letterSpanBottom = $(`<span class="flipBoard-letter-bottom" id=${"letterSpanBottom"+counter}>`).text(letter)
-  letterSpanBottom.appendTo(`#${"bottomFrame"+counter}`);
+  this.letterSpanBottom = $(`<span class="flipBoard-letter-bottom" id=${"letterSpanBottom"+this.id}>`).text(this.currentLetter)
+  this.letterSpanBottom.appendTo(`#${"bottomFrame"+this.id}`);
 
-  letterSpanTop_back = $(`<span class="flipBoard-letter-top-back" id=${"letterSpanTop_back"+counter}>`).text(newLetter)
-  letterSpanTop_back.appendTo(`#${"topBackFrame"+counter}`);
+  this.letterSpanTop_back = $(`<span class="flipBoard-letter-top-back" id=${"letterSpanTop_back"+this.id}>`).text(this.newLetter)
+  this.letterSpanTop_back.appendTo(`#${"topBackFrame"+this.id}`);
 
-  frameObj['topFrame'] = thisFrame[1];
-  frameObj['topBackFrame'] = thisFrame[3];
-  frameObj['letterSpanTopUnder'] = letterSpanTopUnder;
-  frameObj['letterSpanTop'] = letterSpanTop;
-  frameObj['letterSpanBottom'] = letterSpanBottom;
-  frameObj['letterSpanTop_back'] = letterSpanTop_back;
-  frameObj['letters'] = letters;
-}
+  this.setLetters = (first, last) => {
+    this.letters = getAlphabetLetters(first, last);
+    this.letters.reverse();
+    this.currentLetter = this.letters.pop();
+    this.newLetter = this.letters[this.letters.length - 1];
+  }
 
-let animation = false;
-let letter;
-let newLetter;
+  this.animateToNextLetter = () => {
+    
+      if(!this.animation) {
 
-function animateFlipFrame(counter) {
-  let frameObj
-  if(!animation) {
-    letter = frameObj.letterSpanTop.text();
-    newLetter = frameObj.letters.pop();
-    frameObj.letterSpanTop.text(letter);
-    frameObj.letterSpanBottom.text(letter);
-    frameObj.letterSpanTop_back.text(newLetter);
-    frameObj.letterSpanTopUnder.text(newLetter);
-    setTimeout( () => {
-      $('.top-frame').addClass('top-animate');
-      $('.top-back-frame').addClass('top-back-animate');
-      animation = true;
-      $('.top-back-animate').on('animationend', () => {
-        if (animation) {
-          clickSound.play();
-          clickSound.currentTime = 0;
-          frameObj.letterSpanTop.text(newLetter);
-          frameObj.letterSpanBottom.text(newLetter);
-          animation = false;
-          frameObj.topFrame.removeClass('top-animate');
-          frameObj.topBackFrame.removeClass('top-back-animate');
-          if (frameObj.letters.length) animateFlipFrame(counter+1);
+        this.currentLetter = this.letterSpanTop.text();
+        this.newLetter = this.letters.pop();
+        this.letterSpanTop.text(this.currentLetter);
+        this.letterSpanBottom.text(this.currentLetter);
+        this.letterSpanTop_back.text(this.newLetter);
+        this.letterSpanTopUnder.text(this.newLetter);
+
+        if(Math.random() > .9 && this.letters.length !== 0){
+          if (Math.random() > .5) {
+            this.letterSpanTop.css('color','red');
+            this.letterSpanBottom.css('color','red');
+          } else {
+            this.letterSpanTop.css('color','yellow');
+            this.letterSpanBottom.css('color','yellow');
+          }
+        } else {
+          this.letterSpanTop.css('color','white');
+          this.letterSpanBottom.css('color','white');
         }
-      });
-    }, 1);
+
+        // if(!letters.length) {
+        //   this.letterSpanTop.css('color','white');
+        //   this.letterSpanBottom.css('color','white');
+        // }
+
+        // console.log(this.currentLetter == this.newLetter);
+        // if (this.currentLetter !== this.newLetter) { 
+          setTimeout( () => {
+
+            $("#topFrame"+this.id).addClass('top-animate');
+            $("#topBackFrame"+this.id).addClass('top-back-animate');
+
+            this.animation = true;
+
+            $("#topBackFrame"+this.id).on('animationend', () => {
+
+              if (this.animation) {
+
+                this.clickSound.play();
+                this.clickSound.currentTime = 0;
+                this.letterSpanTop.text(this.newLetter);
+                this.letterSpanBottom.text(this.newLetter);
+                this.animation = false;
+                $("#topFrame"+this.id).removeClass('top-animate');
+                $("#topBackFrame"+this.id).removeClass('top-back-animate');
+                if (this.letters.length) {
+                  this.animateToNextLetter();
+                } else{
+                  if (this.messages.length) this.setLetters(this.messages.pop(), this.messages[this.messages.length-1]);
+                }
+              }
+            });
+          }, 1);
+
+      }
   }
 }

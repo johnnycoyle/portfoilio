@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel server build",
-    "server": "nodemon server.js",
-    "build": "NODE_ENV=production webpack --config webpack.config.js --progress --profile --colors"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "Johnny Coyle <johnnycoyle@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.4",
+    "jquery": "^3.2.1",
     "path": "^0.12.7",
     "requirejs": "^2.3.5"
   },
