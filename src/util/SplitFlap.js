@@ -1,5 +1,4 @@
 const dictionary = createDictionary();
-const flipflap = {};
 
 function getAlphabetLetters(start, end) {
   let arr;
@@ -7,11 +6,6 @@ function getAlphabetLetters(start, end) {
   arr = [start];
 
   if (start == end) return [];
-
-  // while(alphabet[index + 1] !== end) {
-  //   arr.push(alphabet[index+1]);
-  //   index++;
-  // }
 
   let count = Math.floor(Math.random() * 3) + 2;
   for (let i = 0; i < count; i++) {
@@ -28,7 +22,7 @@ function SplitFlap(inputMessages, counter) {
   this.id = counter;
   this.animation = false;
   this.messages = inputMessages.reverse();
-  this.clickSound = new Audio('./assets/click.mp3');
+  this.clickSound = new Audio('./assets/click5.wav');
   this.letters = getAlphabetLetters(this.messages.pop(), this.messages[this.messages.length - 1]);
   this.letters.reverse();
   this.currentLetter = this.letters.pop();
@@ -86,26 +80,21 @@ function SplitFlap(inputMessages, counter) {
         this.letterSpanTop_back.text(this.newLetter);
         this.letterSpanTopUnder.text(this.newLetter);
 
-        if(Math.random() > .9 && this.letters.length !== 0){
+        if(Math.random() > .5 && this.letters.length !== 0){
           if (Math.random() > .5) {
             this.letterSpanTop.css('color','red');
             this.letterSpanBottom.css('color','red');
+            this.topFrame.css('background', '#A42694');
           } else {
             this.letterSpanTop.css('color','yellow');
             this.letterSpanBottom.css('color','yellow');
+            this.topFrame.css('background', '#878A3B');
           }
         } else {
           this.letterSpanTop.css('color','white');
           this.letterSpanBottom.css('color','white');
         }
 
-        // if(!letters.length) {
-        //   this.letterSpanTop.css('color','white');
-        //   this.letterSpanBottom.css('color','white');
-        // }
-
-        // console.log(this.currentLetter == this.newLetter);
-        // if (this.currentLetter !== this.newLetter) { 
           setTimeout( () => {
 
             $("#topFrame"+this.id).addClass('top-animate');
@@ -116,14 +105,14 @@ function SplitFlap(inputMessages, counter) {
             $("#topBackFrame"+this.id).on('animationend', () => {
 
               if (this.animation) {
-
-                this.clickSound.play();
                 this.clickSound.currentTime = 0;
+                this.clickSound.play();
                 this.letterSpanTop.text(this.newLetter);
                 this.letterSpanBottom.text(this.newLetter);
                 this.animation = false;
                 $("#topFrame"+this.id).removeClass('top-animate');
                 $("#topBackFrame"+this.id).removeClass('top-back-animate');
+                this.topFrame.css('background', 'transparent');
                 if (this.letters.length) {
                   this.animateToNextLetter();
                 } else{

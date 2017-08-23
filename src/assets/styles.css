@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,700");
 @media screen and (min-width: 480px) {
   body {
-    background: #dbdbdb;
+    background: linear-gradient(#23122C, #1F142D);
     white-space: nowrap; }
 
   * {
@@ -13,7 +14,7 @@
   .main-container {
     position: relative;
     display: block;
-    width: 500px;
+    width: 180px;
     overflow: wrap;
     white-space: normal;
     margin: 10% auto 0 auto; }
@@ -29,78 +30,77 @@
   .flipBoard-container {
     position: relative;
     display: inline-block;
-    width: 25px;
-    height: 50px;
-    background: linear-gradient(180deg, #030504, #212121 50%, #4a4a4a 50%, #626262);
-    border: 1px rgba(0, 0, 0, 0.2) ridge;
+    width: 10px;
+    height: 20px;
+    background: linear-gradient(180deg, transparent, transparent 50%, transparent 50%, transparent);
     transform-style: preserve-3d;
-    perspective: 400px;
+    perspective: 160px;
     z-index: 1; }
 
   .flipBoard-frame {
     width: 100%;
-    height: 25px;
-    border: 1px rgba(0, 0, 0, 0.2) ridge;
+    height: 10px;
     box-sizing: border-box;
     text-align: center;
-    font-size: 35px;
+    font-size: 14px;
     overflow: hidden;
-    color: white; }
+    color: #25102B; }
 
   .top-frame {
-    transform-origin: 0px 25px;
-    background: linear-gradient(180deg, #030504, #212121);
+    transform-origin: 0px 10px;
+    background: linear-gradient(180deg, transparent, transparent);
     transform: rotateX(0deg); }
 
   .bottom-frame {
-    top: 25px;
-    background: linear-gradient(180deg, #4a4a4a, #626262); }
+    top: 10px;
+    background: linear-gradient(180deg, transparent, transparent); }
 
   .flipBoard-letter-top {
-    margin-top: -25;
+    margin-top: -10;
     backface-visibility: hidden; }
 
   .flipBoard-letter-bottom {
-    margin-top: -25px; }
+    margin-top: -10px; }
 
   .top-back-frame {
     width: 100%;
-    height: 25px;
+    height: 10px;
     background: transparent;
-    transform-origin: 0px 25px;
+    transform-origin: 0px 10px;
     transform: rotateX(180deg);
-    border: 1px rgba(0, 0, 0, 0.2) ridge;
     box-sizing: border-box;
     text-align: center;
     color: transparent;
-    font-size: 35px;
+    font-size: 14px;
     overflow: hidden; }
 
   .top-animate {
-    animation: flip 100ms normal linear;
+    animation: flip 200ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .top-back-animate {
-    animation: flipBackSide 100ms normal linear;
+    animation: flipBackSide 200ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .flipBoard-letter-top-back {
-    margin-top: 208.25px;
+    margin-top: 83.3px;
     transform: rotateX(180deg); }
 
   @keyframes flip {
     0% {
       transform: rotateX(0deg);
-      background: linear-gradient(180deg, #030504, #212121);
-      color: white; }
+      background: #33273E;
+      color: #25102B; }
     50% {
-      color: white; }
+      color: #25102B;
+      background: #33273E; }
     51% {
+      background: transparent;
       color: transparent; }
     100% {
-      background: linear-gradient(180deg, #4a4a4a, #626262);
+      background: linear-gradient(180deg, transparent, transparent);
       transform: rotateX(-180deg);
       color: transparent; } }
   @keyframes flipBackSide {
@@ -112,64 +112,20 @@
       color: transparent;
       background: transparent; }
     51% {
-      color: white;
-      background: linear-gradient(0deg, #4a4a4a, #626262); }
+      color: #25102B;
+      background: linear-gradient(0deg, transparent, transparent); }
     100% {
-      background: linear-gradient(0deg, #4a4a4a, #626262);
+      background: linear-gradient(0deg, transparent, transparent);
       transform: rotateX(-180deg);
-      color: white; } }
+      color: #25102B; } }
   .button {
-    width: 100px;
-    height: 50px;
+    width: fit-content;
+    height: 25px;
     margin: auto;
-    background: dodgerblue;
+    font-family: 'Open Sans';
+    background: black;
     color: white;
-    font-size: 17px;
-    top: 50px; }
-
-  /*
-    #by-line-container{
-      color: #9f9e9f;
-      font-weight: 400;
-      width:fit-content;
-      display:block;
-      margin:auto;
-      transition: all 1000ms ease-in-out;
-    }
-  
-    #menu-container{
-      position:relative;
-    }
-  
-    ul {
-      position:relative;
-      width:100%;
-      right:70px;
-      transition: all 1000ms ease-in-out;
-    }
-  
-    li {
-      opacity: 0;
-      display:hidden;
-      margin-top:10px;
-      font-size:25px;
-      width:92%;
-      border-radius:2px;
-      padding: 10px;
-      transition: opacity 1000ms ease-in-out, font-size 1000ms ease-in-out, background 200ms ease-in-out;
-    }
-  
-    li:hover{
-      color: white;
-      background:#c3c3c3;
-    }*/ }
-#test {
-  animation: testAnimation 1s linear; }
-
-@keyframes testAnimation {
-  0% {
-    transform: translateX(0%); }
-  100% {
-    transform: translateX(110%); } }
+    font-size: 13px;
+    top: 50px; } }
 
 /*# sourceMappingURL=styles.css.map */

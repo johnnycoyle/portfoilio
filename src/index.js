@@ -27,11 +27,9 @@ function buildBoard(messages) {
     for (let j = 0; j < messages.length; j++ ){
       messageLetterArray.push(messages[j][i] || ' ');
     }
-    // if (i === 6) console.log('messageLetterArray:',messageLetterArray);
     board.push( new SplitFlap(messageLetterArray, i) ); 
   }
   
-  // board.push( new SplitFlap(firstWord[i] || ' ', secondWord[i] || ' ', i) );
   return board;
 }
 
@@ -39,29 +37,28 @@ $(document).ready(function(){
 
   $('.main-container').fadeIn(200);
 
-  let text = 
+  let text = [" ",
   "JOHNNY COYLE      "+
   "SOFTWARE ENGINEER "+
-  "             WORK "+
-  "            ABOUT "+
-  "          CONTACT ";
+  "                  "+
+  "                  "+
+  "                  ",
 
 
-  let orig = 
-  "    [ SKILLS ]    "+
-  "    REACT REDUX   "+
-  "    NODE.JS       "+
-  "    UI DESIGN     "+
-  "    CRUSHING IT   ";
+  "     [ TECH ]     "+
+  "  - REACT/REDUX   "+
+  "  - NODE.JS       "+
+  "  - UI DESIGN     "+
+  "  - CSS3/SASS     ",
 
-  let next = 
-  "   [ CONTACT  ]   "+
+  "    [ CONTACT ]   "+
+  "                  "+
   " JOHNNYCOYLE@GMAIL"+
-  "    OFFERS OVER   "+
-  "    $1 BILLION    "+
-  "       ONLY       ";
+  "GITHUB:JOHNNYCOYLE"+
+  "                  ",
+  " "];
 
-  board = buildBoard([' ', text, orig, next, ' ']);
+  board = buildBoard(text);
 
   $('<button class="button">animate</button>').appendTo('.main-container');
 
