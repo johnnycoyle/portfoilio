@@ -1,6 +1,6 @@
 node_modules
 bundle.js
 .DS_Store
-.sass_cache
+*.sass_cache
 *.mp3
 *.wav

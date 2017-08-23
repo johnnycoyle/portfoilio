@@ -4,16 +4,16 @@
 
 @media screen and (min-width: 480px) {
 
-  $size: .2;
+  $size: .4;
   $containerWidth: $size*900px;
   $width: 50px*$size;
   $height: 100px*$size;
   $perspective: $width*16;
   $fontSize: $width*1.4;
-  $fontColor: #25102B;
-  // $borderStyle: 1px rgba(0,0,0,.2) ridge;
+  $fontColor: white;
+  $borderStyle: none;//1px rgba(0,0,0,.4) inset;
   $flipAnimationTime: 200ms;
-  // $shadow: 5px 5px 5px 0 rgba(0,0,0,.3);
+  $shadow: 5px 5px 5px 0 rgba(0,0,0,.3);
 
   //colors
   $lightGray: transparent;//#626262;
@@ -22,7 +22,7 @@
   $darkBlack: transparent;//030504;
   $backgroundColor: linear-gradient(#23122C,#1F142D);
 
-  $effectColor:#33273E;
+  $effectColor:transparent;
 
   body {
     background: $backgroundColor;
@@ -34,6 +34,8 @@
     cursor: default;
     font-family: 'Roboto Mono';
     font-weight:700;
+    box-sizing:content-box;
+
   }
 
   .main-container{
@@ -61,7 +63,7 @@
     width:$width;
     height:$height;
     background: linear-gradient(180deg, $darkBlack, $lightBlack 50%, $darkGray 50%, $lightGray);
-    // border: $borderStyle;
+    outline: $borderStyle;
     transform-style: preserve-3d;
     perspective: $perspective;
     z-index:1
@@ -71,7 +73,7 @@
     @extend .absoluteBlock;
     width:100%;
     height:$height/2;
-    // border: $borderStyle;
+    outline: $borderStyle;
     box-sizing: border-box;
     text-align:center;
     font-size:$fontSize;
@@ -109,7 +111,7 @@
     background: transparent;
     transform-origin: 0px $height/2;
     transform: rotateX(180deg);
-    // border: $borderStyle;
+    border: $borderStyle;
     box-sizing: border-box;
     text-align:center;
     color:transparent;
@@ -188,5 +190,8 @@
     color:white;
     font-size:13px;
     top:50px;
+    border-style:none;
+    outline: none;
+    box-shadow:$shadow;
   }
 }

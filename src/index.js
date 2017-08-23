@@ -4,8 +4,6 @@ function runAnimation(el) {
 
   let delay = Math.floor(Math.random()*1000)+100;
 
-  // el.animateToNextLetter();
-
   setTimeout( () => {
     el.animateToNextLetter();
   }, delay);
@@ -33,32 +31,13 @@ function buildBoard(messages) {
   return board;
 }
 
+const dictionary = createDictionary();
+
 $(document).ready(function(){
 
   $('.main-container').fadeIn(200);
 
-  let text = [" ",
-  "JOHNNY COYLE      "+
-  "SOFTWARE ENGINEER "+
-  "                  "+
-  "                  "+
-  "                  ",
-
-
-  "     [ TECH ]     "+
-  "  - REACT/REDUX   "+
-  "  - NODE.JS       "+
-  "  - UI DESIGN     "+
-  "  - CSS3/SASS     ",
-
-  "    [ CONTACT ]   "+
-  "                  "+
-  " JOHNNYCOYLE@GMAIL"+
-  "GITHUB:JOHNNYCOYLE"+
-  "                  ",
-  " "];
-
-  board = buildBoard(text);
+  board = buildBoard(boardText);
 
   $('<button class="button">animate</button>').appendTo('.main-container');
 
