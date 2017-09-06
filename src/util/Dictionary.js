@@ -1,4 +1,6 @@
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789|[]$@/._- ';
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789|[]$@/\(),?._-' ";
+const onlyAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
 const alphabet = characters.repeat(2);
 
 const createDictionary = () => {

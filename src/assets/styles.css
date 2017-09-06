@@ -1,24 +1,27 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600700,900");
 @media screen and (min-width: 480px) {
   body {
-    background: linear-gradient(#23122C, #1F142D);
+    background: url("./background_texture.png");
+    background-repeat: repeat;
+    background-size: 60%;
     white-space: nowrap; }
 
   * {
     user-select: none;
     cursor: default;
     font-family: 'Roboto Mono';
-    font-weight: 700;
+    font-weight: 500;
     box-sizing: content-box; }
 
   .main-container {
     position: relative;
     display: block;
-    width: 360px;
+    width: 640px;
     overflow: wrap;
     white-space: normal;
-    margin: 10% auto 0 auto; }
+    margin-left: 10px;
+    padding-top: 10px; }
 
   .relativeBlock, .flipBoard-letter-top, .flipBoard-letter-bottom, .flipBoard-letter-top-back, .button {
     position: relative;
@@ -31,97 +34,139 @@
   .flipBoard-container {
     position: relative;
     display: inline-block;
-    width: 20px;
-    height: 40px;
-    background: linear-gradient(180deg, transparent, transparent 50%, transparent 50%, transparent);
+    width: 25px;
+    height: 50px;
+    background: linear-gradient(180deg, #252525, #333437 50%, #333437 97%, #151617 97%, #151617);
     outline: none;
     transform-style: preserve-3d;
-    perspective: 320px;
-    z-index: 1; }
+    perspective: 400px;
+    z-index: 1;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3); }
+    .flipBoard-container:hover {
+      color: yellow; }
 
   .flipBoard-frame {
     width: 100%;
-    height: 20px;
+    height: 25px;
     outline: none;
     box-sizing: border-box;
     text-align: center;
-    font-size: 28px;
+    font-size: 35px;
     overflow: hidden;
-    color: white; }
+    border-radius: 4px;
+    color: #a9a9ab; }
 
   .top-frame {
-    transform-origin: 0px 20px;
-    background: linear-gradient(180deg, transparent, transparent);
-    transform: rotateX(0deg); }
-
-  .bottom-frame {
-    top: 20px;
-    background: linear-gradient(180deg, transparent, transparent); }
-
-  .flipBoard-letter-top {
-    margin-top: -20;
+    transform-origin: 0px 25px;
+    background: linear-gradient(180deg, #252525, #333437 50%, #333437 97%, #151617 97%, #151617);
+    transform: rotateX(0deg);
+    box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.5) inset;
+    outline: 0px 0 1px 0 black;
     backface-visibility: hidden; }
 
+  .bottom-frame {
+    top: 25px;
+    background: linear-gradient(#4e5053, #3a3d41);
+    color: #d9d9da; }
+
+  .flipBoard-letter-top {
+    margin-top: -25; }
+
   .flipBoard-letter-bottom {
-    margin-top: -20px; }
+    margin-top: -25px; }
 
   .top-back-frame {
     width: 100%;
-    height: 20px;
-    background: transparent;
-    transform-origin: 0px 20px;
+    height: 25px;
+    transform-origin: 0px 25px;
     transform: rotateX(180deg);
-    border: none;
     box-sizing: border-box;
     text-align: center;
-    color: transparent;
-    font-size: 28px;
-    overflow: hidden; }
+    border: 1px rgba(0, 0, 0, 0.3) solid;
+    font-size: 35px;
+    color: #a9a9ab;
+    overflow: hidden;
+    border-radius: 5px; }
 
   .top-animate {
-    animation: flip 200ms normal linear;
+    animation: flip 190ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .top-back-animate {
-    animation: flipBackSide 200ms normal linear;
+    animation: flipBackSide 190ms normal linear;
     animation-fill-mode: none;
     animation-iteration-count: 1; }
 
   .flipBoard-letter-top-back {
-    margin-top: 166.6px;
+    margin-top: 3px;
     transform: rotateX(180deg); }
 
   @keyframes flip {
     0% {
       transform: rotateX(0deg);
-      background: transparent;
-      color: white; }
+      background: linear-gradient(180deg, #252525, #333437 50%, #333437 97%, #151617 97%, #151617);
+      color: #a9a9ab;
+      border: 1px rgba(0, 0, 0, 0.3) solid; }
     50% {
-      color: white;
-      background: transparent; }
+      color: #a9a9ab;
+      background: linear-gradient(180deg, #252525, #333437 50%, #333437 97%, #151617 97%, #151617);
+      border: 1px rgba(0, 0, 0, 0.3) solid; }
     51% {
       background: transparent;
-      color: transparent; }
+      color: transparent;
+      border: none; }
     100% {
-      background: linear-gradient(180deg, transparent, transparent);
+      background: linear-gradient(#4e5053, #3a3d41);
+      border: none;
+      background: transparent;
       transform: rotateX(-180deg);
       color: transparent; } }
   @keyframes flipBackSide {
     0% {
       transform: rotateX(0deg);
       color: transparent;
-      background: transparent; }
+      background: transparent;
+      border: none;
+      box-shadow: none; }
     50% {
       color: transparent;
-      background: transparent; }
+      background: transparent;
+      border: none;
+      box-shadow: none; }
     51% {
-      color: white;
-      background: linear-gradient(0deg, transparent, transparent); }
+      color: #d9d9da;
+      border: 1px rgba(0, 0, 0, 0.3) solid;
+      background: linear-gradient(#4e5053, #3a3d41);
+      box-shadow: 2px 2px 4px 0 black; }
     100% {
-      background: linear-gradient(0deg, transparent, transparent);
+      background: linear-gradient(#4e5053, #3a3d41);
       transform: rotateX(-180deg);
-      color: white; } }
+      color: #d9d9da;
+      border: 1px rgba(0, 0, 0, 0) solid;
+      box-shadow: 0px 5px 4px 0 black; } }
+  .turn-decorator {
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 10px;
+    background: linear-gradient(#303235, #1a1b1d);
+    margin-top: 20px;
+    margin-left: -4px;
+    outline: 1px rgba(0, 0, 0, 0.3) inset; }
+
+  .turn-middle {
+    position: absolute;
+    top: 23px;
+    left: 8px;
+    width: 10px;
+    height: 2px;
+    background: linear-gradient(#212121, #212121 45%, #1a1b1d 55%, #1a1b1d);
+    border-radius: 1px; }
+
   .button {
     width: fit-content;
     height: 25px;
@@ -133,6 +178,109 @@
     top: 50px;
     border-style: none;
     outline: none;
-    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3); } }
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3); }
+
+  .name-text, #name-text-first, #name-text-last {
+    font-size: 100px;
+    color: #78797c;
+    color: transparent; }
+
+  #name-text-first {
+    font-weight: 200; }
+
+  #name-text-last {
+    font-weight: 700; }
+
+  .menu-button {
+    position: absolute;
+    top: 10%;
+    color: #78797c;
+    font-family: 'Open Sans';
+    font-weight: 200; }
+    .menu-button:hover {
+      color: yellow; }
+
+  #menu-about-button {
+    left: 500px; }
+
+  #menu-contact-button {
+    left: 700px; }
+
+  #mouseOver-react-rpm {
+    position: absolute;
+    display: block;
+    top: 140px;
+    left: 190px;
+    z-index: 1000;
+    width: 275px;
+    height: 50px; }
+
+  #mouseOver-spotify {
+    position: absolute;
+    top: 190px;
+    left: 190px;
+    z-index: 1000;
+    width: 475px;
+    height: 50px; }
+
+  #mouseOver-resume {
+    position: absolute;
+    top: 240px;
+    left: 190px;
+    z-index: 1000;
+    width: 275px;
+    height: 50px; }
+
+  #menu-container {
+    position: relative;
+    margin: auto;
+    width: 655px;
+    height: 70px;
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.4) inset;
+    background: #212121;
+    margin-bottom: 10px; }
+
+  .menu-panel-container {
+    position: relative;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    top: 10px; }
+
+  #flip-board-container {
+    position: relative;
+    display: block;
+    margin: auto;
+    height: 230px;
+    width: 655px;
+    margin-top: 20px;
+    background: #212121;
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.4) inset; }
+
+  #menu-work-button {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    z-index: 1000;
+    width: 110px;
+    height: 50px; }
+
+  #menu-about-button {
+    position: absolute;
+    top: 10px;
+    left: 210px;
+    z-index: 1000;
+    width: 140px;
+    height: 50px; }
+
+  #menu-contact-button {
+    position: absolute;
+    top: 10px;
+    left: 415px;
+    z-index: 1000;
+    width: 200px;
+    height: 50px; } }
 
 /*# sourceMappingURL=styles.css.map */
